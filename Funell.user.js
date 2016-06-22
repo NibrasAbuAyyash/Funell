@@ -1,5 +1,5 @@
 // General variables
-var username, getUser, drafts, draft, draftsCount,
+var username, getUser, drafts, draftsReverse, draft, draftsCount,
   currentDraftKey, draftKey, currentURI, currentURIHash
 
 // Elements variables
@@ -182,13 +182,10 @@ if (getUser) {
       _draftsCntr.setAttribute('id', 'posts')
       _draftsCntr.setAttribute('class', 'itemsList')
 
-      drafts = Object.keys(drafts).map(function(key) {
-          return drafts[key]
-      });
-      drafts.reverse()
-      drafts = JSON.parse(JSON.stringify(drafts))
+      draftsReverse = Object.keys(drafts).sort().reverse();
 
-      for (draftKey in drafts) {
+      for (var i = 0; i < Object.keys(drafts).length; i++) {
+        draftKey = draftsReverse[i]
         draft = drafts[draftKey]
 
         _draftCntr = document.createElement('div')
