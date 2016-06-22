@@ -87,6 +87,9 @@ function saveDraft (e) {
   if (_draftAlertDanger) {
       _draftAlertDanger.remove()
   }
+  if(document.querySelector('.alert.alert-success')){
+	  document.querySelector('.alert.alert-success').remove()
+  }
   alertCntr.insertBefore(_draftAlertSuccess, alertCntr.firstChild)
 }
 
