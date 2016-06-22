@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+
+    "name":         "Funell",
+    "description":  "Drafts Husob I/O",
+    "version":      "0.2",
+    "icons": { "16": "icon.png",
+               "48": "icon.png",
+               "128": "icon.png" },
+
+    "content_scripts": [ {
+        "include_globs":    [ "*" ],
+        "js":               [ "Funell.user.js" ],
+        "matches":          [ "https://io.hsoub.com/*"],
+        "run_at": "document_end"
+    } ],
+
+    "converted_from_user_script": true
+}
