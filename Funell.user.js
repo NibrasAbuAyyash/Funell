@@ -5,8 +5,9 @@ var username,getUser,drafts,draft,draftsCount,
 // Elements variables
 var _currentPointHeader,_draftsIconCntr,_draftsIconLink,
     _draftsIconCount,_draftsIconImage,_currentPointFormAdd,
-    _draftButtonSaveCntr,_currentPointUserTabs,_draftsTabCntr,
-    _draftsTabLink,_draftsCntr,_draftCntr,_draftLink,_draftTitle;
+    _draftButtonSaveCntr,_draftAlertSuccess,_draftAlertDanger,
+    _currentPointUserTabs,_draftsTabCntr,_draftsTabLink,
+    _draftsCntr,_draftCntr,_draftLink,_draftTitle;
 
 // General value
 getUser = document.querySelector(".headerLinks #usrAvatar");
@@ -31,7 +32,7 @@ function generationKey () {
 function saveDraft (e) {
     e.preventDefault();
 
-    var drafts,draft,inputTitle,inputContent,
+    var drafts,draft,alertCntr,inputTitle,inputContent,
         inputCreatedAt,inputUpdateAt,date,dateNow;
 
     drafts = JSON.parse(localStorage.getItem('DraftsHusobIO'));
@@ -47,7 +48,13 @@ function saveDraft (e) {
     inputContent = document.querySelector("#new_post textarea[name='post[content]']").value;
 
     if (inputTitle == "" || inputContent == "") {
-        alert('الرجاء تعبئة كل مِن حقل العنوان والمحتوى، قبل حفظ المسودة!');
+        _draftAlertDanger = document.createElement('div');
+        _draftAlertDanger.setAttribute('class', 'alert alert-danger');
+        _draftAlertDanger.setAttribute('style', 'padding: 7px 14px;font-size: 16px;margin: -10px 0 10px;');
+        _draftAlertDanger.textContent = "الرجاء تعبئة كل مِن حقل العنوان والمحتوى، قبل حفظ المسودة!";
+
+        alertCntr = document.querySelector('#new_post .addBtns');
+        alertCntr.insertBefore(_draftAlertDanger, alertCntr.firstChild);
         return false;
     }
 
@@ -71,7 +78,14 @@ function saveDraft (e) {
 
     _draftsIconCount.textContent = Object.keys(drafts).length;
 
-    alert('تم حفظ المسودة بنجاح!');
+    _draftAlertSuccess = document.createElement('div');
+    _draftAlertSuccess.setAttribute('class', 'alert alert-success');
+    _draftAlertSuccess.setAttribute('style', 'padding: 7px 14px;font-size: 16px;margin: -10px 0 10px;');
+    _draftAlertSuccess.textContent = "تم حفظ المسودة بنجاح!";
+
+    alertCntr = document.querySelector('#new_post .addBtns');
+    _draftAlertDanger.remove();
+    alertCntr.insertBefore(_draftAlertSuccess, alertCntr.firstChild);
 }
 
 if (getUser) {
@@ -156,6 +170,8 @@ if (getUser) {
 
         if (currentURI.indexOf('/u/' + username + '#drafts') > -1) {
             document.querySelector(".tab-content  .communityCardsBlocks").remove();
+            document.querySelector(".tab-content  .clear").remove();
+            document.querySelector(".tab-content  #more_content").remove();
             document.querySelector('.communitiesTabs .profile li:first-child').removeAttribute("class");
             _draftsTabCntr.setAttribute('class', 'active');
 
