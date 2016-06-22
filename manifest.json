@@ -3,7 +3,7 @@
 
     "name":         "Funell",
     "description":  "Drafts Husob I/O",
-    "version":      "0.2",
+    "version":      "0.2.1",
     "icons": { "16": "icon.png",
                "48": "icon.png",
                "128": "icon.png" },

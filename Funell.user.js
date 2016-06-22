@@ -36,6 +36,13 @@ function saveDraft (e) {
   var drafts, draft, alertCntr, inputTitle, inputContent,
     inputCreatedAt, inputUpdateAt, date, dateNow
 
+  if (_draftAlertDanger) {
+    _draftAlertDanger.remove()
+  }
+  if (_draftAlertSuccess) {
+    _draftAlertSuccess.remove()
+  }
+
   drafts = JSON.parse(localStorage.getItem('DraftsHusobIO'))
 
   if (!drafts) {
@@ -84,9 +91,6 @@ function saveDraft (e) {
   _draftAlertSuccess.textContent = 'تم حفظ المسودة بنجاح!'
 
   alertCntr = document.querySelector('#new_post .addBtns')
-  if (_draftAlertDanger) {
-      _draftAlertDanger.remove()
-  }
   alertCntr.insertBefore(_draftAlertSuccess, alertCntr.firstChild)
 }
 
