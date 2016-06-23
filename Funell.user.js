@@ -116,8 +116,8 @@ if (getUser) {
 
   _draftsIconCount = document.createElement('span')
   _draftsIconCount.setAttribute('class', 'num')
-  _draftsIconCount.setAttribute('style', 'display: block;min-height: 19px;position: absolute;padding: 4px 5px 0px;' +
-    'border-radius: 100%;background: #dd4814;color: #fff;font-size:10px;' +
+  _draftsIconCount.setAttribute('style', 'display: block;position: absolute;' +
+    'border-radius: 50%;background: #dd4814;color: #fff;font-size:11px;width: 18px;height: 18px; line-height: 18px; font-family: sans-serif;' +
     'top: 17px;left: 7px;z-index: 10;')
   _draftsIconCount.textContent = draftsCount
 
